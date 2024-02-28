@@ -3,15 +3,16 @@ using UnityEngine;
 namespace Assets.Scripts
 {
     [Serializable]
-    public struct Tile
+    public struct Tile : HoldsWeighted<TileTexture>
     {
         public string name;
         public TileTexture[] textures;
+        public readonly TileTexture[] GetWeighted() => textures;
     }
     [Serializable]
-    public struct TileTexture
+    public struct TileTexture : HasWeight
     {
         public Sprite sprite;
-        public int weight;
+        public int weight { get; set; }
     }
 }

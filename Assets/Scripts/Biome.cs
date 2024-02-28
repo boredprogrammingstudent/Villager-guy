@@ -7,16 +7,17 @@ using System.Threading.Tasks;
 namespace Assets.Scripts
 {
     [Serializable] 
-    public struct Biome
+    public struct Biome : HasWeight, HoldsWeighted<TileInstance>
     {
         public string name;
         public TileInstance[] tiles;
-        public int weight;
+        public int weight { get; set; }
+        public readonly TileInstance[] GetWeighted() => tiles;
     }
     [Serializable]
-    public struct TileInstance
+    public struct TileInstance : HasWeight
     {
         public Tile tile;
-        public int weight;
+        public int weight { get; set; }
     }
 }
